@@ -1,0 +1,22 @@
+// 个人 GKD 去广告订阅
+// 当前为安全空模板：尚未加入任何自动点击规则。
+// 请先在目标 APP 中采集 GKD 快照，再根据真实节点编写规则，避免误触或误点支付/授权按钮。
+{
+  id: 2026110201,
+  name: '我的个人去广告规则',
+  version: 1,
+  author: 'MRIjc',
+  description: '个人维护的 GKD 规则。规则需基于实际快照逐个验证；当前仅为可导入的空模板。',
+  updateUrl: 'https://raw.githubusercontent.com/MRIjc/GKD-Universal-AdRules/main/custom-gkd.json5',
+  checkUpdateUrl: 'https://raw.githubusercontent.com/MRIjc/GKD-Universal-AdRules/main/custom-gkd.json5',
+  supportUri: 'https://github.com/MRIjc/GKD-Universal-AdRules',
+  categories: [],
+  globalGroups: [],
+  apps: [],
+}
+
+// 待适配应用清单（先采集快照，再补充包名、页面节点和规则）：
+// 高德地图、MeToo、网上国网、中国电信、云闪付、快手极速版、酷我音乐、哔哩哔哩
+// 小米应用商店、小爱同学、123网盘、酷安易支付、拼多多、网费猫、易哈佛、米家
+// 支付宝、平安好车主、钉钉、多看、网易大神、抖音极速版、向日葵远程控制
+// 小米主题商店、中油浩客驿站、大师兄
