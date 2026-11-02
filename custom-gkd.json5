@@ -36,10 +36,43 @@
     {id:'com.ss.android.ugc.aweme.lite',name:'抖音极速版',groups:[{key:2,name:'未分类-功能体验邀请弹窗',rules:[{key:0,name:'【首页商城】体验邀请弹窗',activityIds:'com.ss.android.ugc.aweme.commerce.sdk.MallContainerActivity',matches:'[text="不再提示"] + @ECCustomUiImage[clickable=true] +n LynxFlattenUI[text^="立即体验"]',snapshotUrls:'https://i.gkd.li/i/13684791'}],enable:false},{key:8,name:'未分类-朋友推荐弹窗',fastQuery:true,actionMaximum:1,resetMatch:'app',activityIds:['com.ss.android.ugc.aweme.main.MainActivity'],rules:'[text="朋友推荐"] +2 [id="com.ss.android.ugc.aweme.lite:id/close"][clickable=true]',snapshotUrls:'https://i.gkd.li/i/13650523',enable:false},{key:9,fastQuery:true,name:'通知提示-消息提醒弹窗',desc:'点击暂不开启',rules:[{activityIds:'com.ss.android.ugc.aweme.main.MainActivity',matches:'[id="com.ss.android.ugc.aweme.lite:id/gl7"] > [id="com.ss.android.ugc.aweme.lite:id/h5q"]',snapshotUrls:'https://i.gkd.li/i/13888485'}],enable:false}]},
     {id:'com.oray.sunlogin',name:'向日葵远程控制',groups:[{key:0,name:'全屏广告-瓜子会员弹窗',desc:'点击右上角[关闭]',fastQuery:true,activityIds:'com.oray.sunlogin.application.Main',rules:'[id="com.oray.sunlogin:id/close"][text="关闭"]',snapshotUrls:['https://i.gkd.li/i/13195950','https://i.gkd.li/i/12910411','https://i.gkd.li/i/13197454'],exampleUrls:'https://github.com/gkd-kit/inspect/assets/38517192/61d335f0-a85a-4e26-80fe-6bc0d1742bc0',enable:false},{key:2,name:'功能类-设备列表-卡片广告',activityIds:'com.oray.sunlogin.application.Main',fastQuery:true,rules:'[id="com.oray.sunlogin:id/fl_close_advertise"]',snapshotUrls:'https://i.gkd.li/i/13207785',exampleUrls:'https://github.com/gkd-kit/inspect/assets/38517192/071e5512-e1aa-4a8c-8440-009d6f0f35ff',enable:false},{key:3,name:'功能类-退出app提示',fastQuery:true,rules:'[text="是否确认退出向日葵？"] + LinearLayout > [vid="button_ok"]',snapshotUrls:'https://i.gkd.li/i/13927148',enable:false}]},
     {id:'com.zhiyin.qingdan.dashixiong',name:'大师兄影视',groups:[{key:1,name:'全屏广告',rules:[{key:0,name:'快手广告-1',activityIds:'com.zhiyin.qingdan.dashixiong.MainActivity',fastQuery:true,matches:'@ImageView <n ViewGroup -2 ViewGroup > ViewGroup > [text="广告"]',snapshotUrls:'https://i.gkd.li/i/12843281'},{key:1,name:'快手广告-2',activityIds:'com.zhiyin.qingdan.dashixiong.MainActivity',matches:['ViewGroup[childCount=2] > ImageView + [text="广告"]','ViewGroup[childCount=1] > @ViewGroup[childCount=1][clickable=true] > ImageView'],snapshotUrls:'https://i.gkd.li/i/13521143'},{key:2,name:'快手广告-3',activityIds:'com.zhiyin.qingdan.dashixiong.MainActivity',matches:'[text="广告"] <2 ViewGroup -3 ViewGroup >2 [text="跳过"]',snapshotUrls:'https://i.gkd.li/i/13521140'},{key:3,name:'腾讯广告-1',activityIds:'com.zhiyin.qingdan.dashixiong.MainActivity',matches:'ImageView - LinearLayout - FrameLayout > FrameLayout[childCount=1] > ImageView[childCount=0]',snapshotUrls:'https://i.gkd.li/i/12843282'},{key:4,name:'腾讯广告-2',activityIds:['com.zhiyin.qingdan.dashixiong.MainActivity','com.qq.e.ads.ADActivity'],matches:'ImageView - FrameLayout > FrameLayout[childCount=1] > ImageView[childCount=0]',snapshotUrls:['https://i.gkd.li/i/12843345','https://i.gkd.li/i/12843333','https://i.gkd.li/i/13400656']},{key:5,name:'字节广告',activityIds:'com.zhiyin.qingdan.dashixiong.MainActivity',fastQuery:true,matches:'@Image < View +n View > View > View > [text="广告"]',snapshotUrls:'https://i.gkd.li/i/12843323'}],enable:false},{key:10,name:'未分类-公告弹窗',desc:'自动点击【我知道了】',activityIds:'com.zhiyin.qingdan.dashixiong.MainActivity',fastQuery:true,rules:'[desc^="必读通告"] +n [desc="我知道了"]',snapshotUrls:'https://i.gkd.li/i/12843280',enable:false},{key:11,name:'全屏广告-首页广告弹窗',desc:'点击X',rules:[{activityIds:'com.sigmob.sdk.base.common.TransparentAdActivity',matches:'[id="close_btn"][clickable=true]',snapshotUrls:'https://i.gkd.li/i/13887500'}],enable:false}]}
+    {
+      id: 'com.mfcloudcalculate.networkdisk',
+      name: '123云盘',
+      groups: [
+        {
+          key: 1,
+          name: '全屏广告-关闭广告弹窗',
+          enable: false,
+          rules: [
+            {
+              key: 0,
+              fastQuery: true,
+              activityIds: 'com.mfcloudcalculate.networkdisk.activity.AdFreeActivity',
+              matches: '[text*="关闭"][id="com.mfcloudcalculate.networkdisk:id/tv_ad_free_colse"][visibleToUser=true]',
+              snapshotUrls: 'https://i.gkd.li/import/13546173',
+            },
+          ],
+        },
+        {
+          key: 2,
+          name: '开屏广告-跳过',
+          enable: false,
+          rules: [
+            {
+              key: 0,
+              fastQuery: true,
+              matches: '[id="com.mfcloudcalculate.networkdisk:id/frame_ad_splash_container"] >n [text^="跳过"][text.length<=4][visibleToUser=true]',
+              snapshotUrls: ['https://i.gkd.li/import/12846434', 'https://i.gkd.li/import/13059834'],
+            },
+          ],
+        },
+      ],
+    },
   ],
 }
 
-// 尚待补充的 10 个应用：
-// 米兔、酷我音乐、小爱同学、123网盘、酷安易支付、网费猫、易哈佛
+// 尚待补充的 9 个应用：
+// 米兔、酷我音乐、小爱同学、酷安易支付、网费猫、易哈佛
 // 平安好车主、小米主题商店、中油浩客驿站
 // 这些应用暂未在当前规则源中找到可核验的对应规则；待确认准确包名和快照后再添加。
