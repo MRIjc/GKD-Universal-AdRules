@@ -1,15 +1,30 @@
-// GKD 自用订阅
-// 当前为可导入的初始骨架；尚未加入经过实际界面快照验证的应用规则。
-// 请勿将此版本当作已能拦截 28 个应用广告的成品。
+// MRIjc 自用 GKD 订阅
+// 第 1 版：加入通用开屏“跳过”按钮规则，先用于实际测试。
+// 说明：这不是 28 个应用的专属规则合集；应用专属规则需要对应界面快照验证，避免误点。
 {
   id: 2026110201,
   name: 'MRIjc 自用去广告规则',
-  version: 1,
+  version: 2,
   author: 'MRIjc',
   updateUrl: 'https://raw.githubusercontent.com/MRIjc/GKD-Universal-AdRules/main/gkd.json5',
   checkUpdateUrl: 'https://raw.githubusercontent.com/MRIjc/GKD-Universal-AdRules/main/gkd.json5',
   supportUri: 'https://github.com/MRIjc/GKD-Universal-AdRules',
   categories: [],
-  globalGroups: [],
+  globalGroups: [
+    {
+      key: 0,
+      name: '开屏广告-通用跳过按钮',
+      desc: '识别屏幕上可见的“跳过”文字并点击；可能不适用于图片按钮或特殊广告。',
+      matchTime: 10000,
+      actionMaximum: 1,
+      resetMatch: 'app',
+      rules: [
+        {
+          key: 0,
+          matches: '[text*="跳过"][text.length<10][visibleToUser=true]',
+        },
+      ],
+    },
+  ],
   apps: [],
 }
