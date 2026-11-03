@@ -1,0 +1,38 @@
+name: Import Lin-arm GKD subscription
+
+on:
+  push:
+    paths:
+      - ".github/workflows/import-lin-arm.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Download standalone copy
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 \
+            "https://raw.githubusercontent.com/Lin-arm/GKD_subscription/main/dist/gkd.json5" \
+            --output Lin-arm-gkd.json5
+          test "$(wc -c < Lin-arm-gkd.json5)" -gt 100000
+          grep -q "globalGroups" Lin-arm-gkd.json5
+          grep -q "apps" Lin-arm-gkd.json5
+      - name: Commit imported file
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- Lin-arm-gkd.json5; then
+            echo "No changes to import."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Lin-arm-gkd.json5
+          git commit -m "Add Lin-arm GKD subscription as standalone copy"
+          git push
