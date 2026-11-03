@@ -1427,10 +1427,6 @@
           "enable": false
         },
         {
-          "id": "com.xiaomi.wpslauncher",
-          "enable": false
-        },
-        {
           "id": "com.xiaomi.cajlauncher",
           "enable": false
         },
@@ -2978,10 +2974,6 @@
           "enable": false
         },
         {
-          "id": "com.xiaomi.wpslauncher",
-          "enable": false
-        },
-        {
           "id": "com.xiaomi.cajlauncher",
           "enable": false
         },
@@ -4482,10 +4474,6 @@
         },
         {
           "id": "com.miui.thirdappassistant",
-          "enable": false
-        },
-        {
-          "id": "com.xiaomi.wpslauncher",
           "enable": false
         },
         {
