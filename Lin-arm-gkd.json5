@@ -1,9 +1,9 @@
 {
   "id": 2026110301,
   "name": "123云盘广告与跳过规则",
-  "version": 2,
+  "version": 1,
   "author": "MRIjc",
-  "description": "包含123云盘广告与跳过规则，以及开屏广告、更新提示、青少年模式三类全局规则；全局规则参考 Lin-arm/GKD_subscription。",
+  "description": "仅包含123云盘广告关闭及广告跳过规则，来源于 Lin-arm/GKD_subscription；不包含更新提示和功能类操作。",
   "updateUrl": "https://raw.githubusercontent.com/MRIjc/GKD-Universal-AdRules/main/Lin-arm-gkd.json5",
   "checkUpdateUrl": "https://raw.githubusercontent.com/MRIjc/GKD-Universal-AdRules/main/Lin-arm-gkd.json5",
   "supportUri": "https://github.com/MRIjc/GKD-Universal-AdRules",
@@ -29,146 +29,7 @@
       "name": "未分类广告"
     }
   ],
-  "globalGroups": [
-    {
-      "key": 0,
-      "name": "开屏广告-全局",
-      "desc": "关闭打开应用时的开屏广告",
-      "order": -10,
-      "fastQuery": true,
-      "matchTime": 10000,
-      "actionMaximum": 2,
-      "resetMatch": "app",
-      "forcedTime": 10000,
-      "actionCdKey": 0,
-      "actionMaximumKey": 0,
-      "priorityTime": 10000,
-      "disableIfAppGroupMatch": "开屏广告",
-      "rules": [
-        {
-          "key": 0,
-          "excludeMatches": "([text=\"Submit\" || text=\"书签\" || text=\"NEXT\" || text=\"覆盖\" || text*=\"阅读并同意\" || text=\"跳过空白\"][visibleToUser=true]) || ([text*=\"搜索\" || text*=\"历史记录\" || text$=\"在搜\"][text.length>3 && text.length<7][visibleToUser=true]) || ([text$=\"设置\" || text*=\"跳过片\"][text.length<10][visibleToUser=true]) || ([text^=\"选择\"][text*=\"偏好\" || text*=\"兴趣\" || text*=\"喜好\" || text*=\"行业\"][text.length<10][visibleToUser=true])",
-          "anyMatches": [
-            "[text*=\"跳过\"][text.length<10][width<500 && height<300][visibleToUser=true]",
-            "@[name$=\"View\" || name$=\"LinearLayout\"][clickable=true][childCount<2][width<300 && height<200] - [text=\"互动广告\"][visibleToUser=true]",
-            "[childCount=0][visibleToUser=true][width<500 && height<300][(text.length<10 && (text*=\"跳过\" || text*=\"跳 过\" || text*=\"跳過\" || text~=\"(?is).*skip.*\") && text!*=\"视频\" && text!*=\"片头\" && text!*=\"片尾\") || (vid~=\"(?is).*skip.*\" && vid!~=\"(?is).*video.*\" && vid!~=\"(?is).*head.*\" && vid!~=\"(?is).*tail.*\" && !(text=\"帮助\") && !(text=\"取消\") && !(text*=\"退出\")) || id$=\"tt_splash_skip_btn\" || (desc.length<10 && (desc*=\"跳过\" || desc*=\"跳過\" || desc~=\"(?is).*skip.*\"))]"
-          ],
-          "snapshotUrls": [
-            "https://i.gkd.li/i/21617612",
-            "https://i.gkd.li/i/23557410",
-            "https://i.gkd.li/i/13421452",
-            "https://i.gkd.li/i/24097095",
-            "https://i.gkd.li/i/24766641",
-            "https://i.gkd.li/i/24330969",
-            "https://i.gkd.li/i/24541384",
-            "https://i.gkd.li/i/24588777"
-          ],
-          "excludeSnapshotUrls": [
-            "https://i.gkd.li/i/19952277",
-            "https://i.gkd.li/i/23122415",
-            "https://i.gkd.li/i/23225609",
-            "https://i.gkd.li/i/27801562",
-            "https://i.gkd.li/i/22634992",
-            "https://i.gkd.li/i/32416687",
-            "https://i.gkd.li/i/20946730",
-            "https://i.gkd.li/i/23741801",
-            "https://i.gkd.li/i/23741779",
-            "https://i.gkd.li/i/23051921",
-            "https://i.gkd.li/i/23742770",
-            "https://i.gkd.li/i/23743049",
-            "https://i.gkd.li/i/23052289",
-            "https://i.gkd.li/i/15079224",
-            "https://i.gkd.li/i/17108010",
-            "https://i.gkd.li/i/18265000",
-            "https://i.gkd.li/i/20949002",
-            "https://i.gkd.li/i/21617520",
-            "https://i.gkd.li/i/25039297"
-          ]
-        },
-        {
-          "key": 1,
-          "anyMatches": [
-            "@View[text=null][clickable=true][childCount=0][visibleToUser=true][width<200&&height<200] +(1,2) TextView[index=parent.childCount.minus(1)][childCount=0] <n FrameLayout[childCount>2][text=null][desc=null] >(n+6) [text*=\"第三方应用\" || text*=\"扭动手机\" || text*=\"点击或上滑\" || text*=\"省钱好物\" || text*=\"扭一扭\"][visibleToUser=true]",
-            "FrameLayout > FrameLayout[childCount>2][text=null][desc=null] > @View[text=null][clickable=true][childCount=0][visibleToUser=true][width<200&&height<200] +(1,2) TextView[index=parent.childCount.minus(1)][childCount=0][visibleToUser=true]"
-          ],
-          "snapshotUrls": [
-            "https://i.gkd.li/i/19685971",
-            "https://i.gkd.li/i/19701216",
-            "https://i.gkd.li/i/20262130",
-            "https://i.gkd.li/i/20768349",
-            "https://i.gkd.li/i/20883248",
-            "https://i.gkd.li/i/23549504"
-          ]
-        }
-      ]
-    },
-    {
-      "key": 1,
-      "name": "更新提示-全局",
-      "desc": "关闭应用的更新弹窗",
-      "order": -9,
-      "fastQuery": true,
-      "matchTime": 10000,
-      "forcedTime": 10000,
-      "actionMaximum": 1,
-      "resetMatch": "app",
-      "disableIfAppGroupMatch": "更新提示",
-      "rules": [
-        {
-          "key": 0,
-          "excludeMatches": "([text*=\"全部\"][text*=\"更新\" || text*=\"忽略\"][text.length<7][visibleToUser=true]) || ([text^=\"继续\" || text^=\"仍然\" || text*=\"权限\"][text.length<6][visibleToUser=true]) || ([text*=\"来源\"][visibleToUser=true])",
-          "matches": [
-            "[text*=\"内测\" || text*=\"测试版\" || text*=\"新版\" || text*=\"更新\" || text*=\"升级\" || text*=\"体验\" || text*=\"內測\" || text*=\"測試版\" || text*=\"升級\" || text*=\"體驗\" || text*=\"Update\" || text*=\"Upgrade\" || text*=\"Experience\"][text!*=\"自动\" && text!*=\"自動\" && text!*=\"成功\" && text!*=\"失败\" && text!*=\"失敗\" && text!*=\"检查更新\" && text!*=\"检测更新\" && text!*=\"卸载\" && name!$=\"EditText\"][childCount=0][visibleToUser=true]",
-            "[text*=\"更新\" || text*=\"下载\" || text*=\"安装\" || text*=\"升级\" || text*=\"查看\" || text*=\"体验\" || text*=\"确定\" || text*=\"确认\" || text*=\"应用市场\"][text.length<6][childCount=0][visibleToUser=true]",
-            "([text*=\"不再提醒\" || text$=\"再说\" || text$=\"拒绝\" || text$=\"再想想\" || text*=\"再看看\" || text^=\"忽略\" || text^=\"暂不\" || text^=\"放弃\" || text^=\"取消\" || text$=\"不要\" || text$=\"再說\" || text$=\"暫不\" || text$=\"拒絕\" || text*=\"稍后\" || text^=\"关闭\" || text$=\"Later\" || text^=\"Ignore\" || text^=\"Not now\" || text^=\"Cancel\"][!(text*=\"取消\"&&text*=\"忽略\")][text.length<6][childCount=0][visibleToUser=true]) || ([vid=\"closeIv\" || vid=\"iv_close\" || vid=\"iv_cancel\" || vid=\"close\" || vid=\"Close\" || vid=\"img_close\" || vid=\"btn_close\" || vid=\"ivCancel\" || vid=\"tvCancel\" || vid=\"cancel\" || vid=\"Cancel\" || vid=\"ivClose\" || vid=\"imgClose\" || vid=\"iv_negative\" || vid=\"update_close_icon\" || vid=\"btn_skip_update\" || vid=\"dialog_close\" || vid=\"im_dismiss\"][childCount=0][visibleToUser=true])"
-          ],
-          "snapshotUrls": [
-            "https://i.gkd.li/i/24158267",
-            "https://i.gkd.li/i/27428213",
-            "https://i.gkd.li/i/27470927",
-            "https://i.gkd.li/i/32878161",
-            "https://i.gkd.li/i/30968619"
-          ],
-          "excludeSnapshotUrls": [
-            "https://i.gkd.li/i/17710149",
-            "https://i.gkd.li/i/19605413",
-            "https://i.gkd.li/i/19918544",
-            "https://i.gkd.li/i/20033908",
-            "https://i.gkd.li/i/27942482",
-            "https://i.gkd.li/i/16487278",
-            "https://i.gkd.li/i/16487282",
-            "https://i.gkd.li/i/16550275",
-            "https://i.gkd.li/i/20053957"
-          ]
-        }
-      ]
-    },
-    {
-      "key": 2,
-      "name": "青少年模式-全局",
-      "desc": "关闭应用的青少年模式弹窗",
-      "order": -8,
-      "fastQuery": true,
-      "matchTime": 10000,
-      "forcedTime": 10000,
-      "actionMaximum": 1,
-      "resetMatch": "app",
-      "disableIfAppGroupMatch": "青少年模式",
-      "rules": [
-        {
-          "key": 0,
-          "matches": [
-            "[text*=\"青少年\" || text*=\"未成年\" || text*=\"儿童\"][text*=\"模式\" || text*=\"守护\"][text.length<15][childCount=0][visibleToUser=true]",
-            "[text*=\"知道了\" || text*=\"我已知晓\" || text*=\"已满\" || text*=\"不再提\" || text=\"关闭\"][text.length<8][childCount=0][visibleToUser=true]"
-          ],
-          "snapshotUrls": [
-            "https://i.gkd.li/i/23427881",
-            "https://i.gkd.li/i/27382640"
-          ]
-        }
-      ]
-    }
-  ],
+  "globalGroups": [],
   "apps": [
     {
       "id": "com.mfcloudcalculate.networkdisk",
