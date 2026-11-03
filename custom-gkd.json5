@@ -1,7 +1,7 @@
 {
   "id": 2026110202,
-  "name": "我的26应用广告规则",
-  "version": 11,
+  "name": "杰的GDK订阅",
+  "version": 12,
   "author": "MRIjc",
   "description": "保留原有26个指定应用规则，并启用3组全局规则：开屏广告、更新提示、青少年模式。",
   "updateUrl": "https://raw.githubusercontent.com/MRIjc/GKD-Universal-AdRules/main/custom-gkd.json5",
