@@ -1,7 +1,7 @@
 {
   "id": 2026110202,
   "name": "我的26应用广告规则",
-  "version": 8,
+  "version": 9,
   "author": "MRIjc",
   "description": "保留26个指定应用；强化开屏抢先识别与广告规则快速匹配，不拦截软件版本更新、固件更新及升级提醒。",
   "updateUrl": "https://raw.githubusercontent.com/MRIjc/GKD-Universal-AdRules/main/custom-gkd.json5",
@@ -6076,6 +6076,25 @@
               ]
             }
           ]
+        },
+        {
+          "enable": true,
+          "key": 44,
+          "name": "开屏广告-通用跳过按钮",
+          "desc": "通用兜底规则：检测可见的“跳过”按钮；不同版本界面可能需要单独适配",
+          "forcedTime": 6000,
+          "priorityTime": 6000,
+          "matchTime": 10000,
+          "actionMaximum": 1,
+          "resetMatch": "app",
+          "fastQuery": true,
+          "rules": [
+            {
+              "key": 0,
+              "matches": "[text^=\"跳过\"][text.length<=4][visibleToUser=true]"
+            }
+          ],
+          "order": -10
         }
       ]
     }
