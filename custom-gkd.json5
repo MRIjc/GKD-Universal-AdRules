@@ -1,9 +1,9 @@
 {
   "id": 2026110202,
   "name": "我的26应用广告规则",
-  "version": 10,
+  "version": 11,
   "author": "MRIjc",
-  "description": "保留原有26个应用规则，并新增9类全局规则：开屏广告、全屏广告、局部广告、更新提示、评价提示、通知提示、青少年模式、权限提示、定位提示。",
+  "description": "保留原有26个指定应用规则，并启用3组全局规则：开屏广告、更新提示、青少年模式。",
   "updateUrl": "https://raw.githubusercontent.com/MRIjc/GKD-Universal-AdRules/main/custom-gkd.json5",
   "checkUpdateUrl": "https://raw.githubusercontent.com/MRIjc/GKD-Universal-AdRules/main/custom-gkd.json5",
   "supportUri": "https://github.com/MRIjc/GKD-Universal-AdRules",
@@ -62,239 +62,125 @@
     }
   ],
   "globalGroups": [
-  {
-    "key": 0,
-    "name": "开屏广告-全局",
-    "desc": "识别并跳过应用开屏广告；带排除条件以减少误触",
-    "order": -10,
-    "enable": true,
-    "fastQuery": true,
-    "matchTime": 10000,
-    "actionMaximum": 2,
-    "resetMatch": "app",
-    "forcedTime": 10000,
-    "priorityTime": 10000,
-    "disableIfAppGroupMatch": "开屏广告",
-    "rules": [
-      {
-        "key": 0,
-        "excludeMatches": "([text=\"Submit\" || text=\"书签\" || text=\"NEXT\" || text=\"覆盖\" || text*=\"阅读并同意\" || text=\"跳过空白\"][visibleToUser=true]) || ([text*=\"搜索\" || text=\"历史记录\" || text$=\"在搜\"][text.length>3 && text.length<7][visibleToUser=true]) || ([text$=\"设置\" || text*=\"跳过片\"][text.length<10][visibleToUser=true]) || ([text^=\"选择\"][text*=\"偏好\" || text*=\"兴趣\" || text*=\"喜好\" || text*=\"行业\"][text.length<10][visibleToUser=true])",
-        "anyMatches": [
-          "[text*=\"跳过\"][text.length<10][width<500 && height<300][visibleToUser=true]",
-          "[childCount=0][visibleToUser=true][width<500 && height<300][(text.length<10 && (text*=\"跳过\" || text*=\"跳 过\" || text*=\"跳過\" || text~=\"(?is).*skip.*\") && text!*=\"视频\" && text!*=\"片头\" && text!*=\"片尾\") || (vid~=\"(?is).*skip.*\" && vid!~=\"(?is).*video.*\" && vid!~=\"(?is).*head.*\" && vid!~=\"(?is).*tail.*\" && !(text=\"帮助\") && !(text=\"取消\") && !(text*=\"退出\")) || id$=\"tt_splash_skip_btn\" || (desc.length<10 && (desc*=\"跳过\" || desc*=\"跳過\" || desc~=\"(?is).*skip.*\"))]"
-        ],
-        "snapshotUrls": [
-          "https://i.gkd.li/i/21617612",
-          "https://i.gkd.li/i/23557410",
-          "https://i.gkd.li/i/13421452",
-          "https://i.gkd.li/i/24097095",
-          "https://i.gkd.li/i/24766641"
-        ],
-        "excludeSnapshotUrls": [
-          "https://i.gkd.li/i/19952277",
-          "https://i.gkd.li/i/23122415",
-          "https://i.gkd.li/i/23225609",
-          "https://i.gkd.li/i/27801562",
-          "https://i.gkd.li/i/22634992",
-          "https://i.gkd.li/i/32416687",
-          "https://i.gkd.li/i/20946730",
-          "https://i.gkd.li/i/23741801",
-          "https://i.gkd.li/i/23741779",
-          "https://i.gkd.li/i/23051921",
-          "https://i.gkd.li/i/23742770",
-          "https://i.gkd.li/i/23743049",
-          "https://i.gkd.li/i/23052289"
-        ]
-      },
-      {
-        "key": 1,
-        "anyMatches": [
-          "@View[text=null][clickable=true][childCount=0][visibleToUser=true][width<200&&height<200] +(1,2) TextView[index=parent.childCount.minus(1)][childCount=0] <n FrameLayout[childCount>2][text=null][desc=null] >(n+6) [text*=\"第三方应用\" || text*=\"扭动手机\" || text*=\"点击或上滑\" || text*=\"省钱好物\" || text*=\"扭一扭\"][visibleToUser=true]",
-          "FrameLayout > FrameLayout[childCount>2][text=null][desc=null] > @View[text=null][clickable=true][childCount=0][visibleToUser=true][width<200&&height<200] +(1,2) TextView[index=parent.childCount.minus(1)][childCount=0][visibleToUser=true]"
-        ],
-        "snapshotUrls": [
-          "https://i.gkd.li/i/19685971",
-          "https://i.gkd.li/i/19701216",
-          "https://i.gkd.li/i/20262130",
-          "https://i.gkd.li/i/20768349",
-          "https://i.gkd.li/i/20883248",
-          "https://i.gkd.li/i/23549504"
-        ]
-      }
-    ]
-  },
-  {
-    "key": 1,
-    "name": "全屏广告-全局",
-    "desc": "仅关闭同时出现明确广告标识和关闭按钮的弹窗",
-    "order": -8,
-    "enable": true,
-    "fastQuery": true,
-    "matchTime": 10000,
-    "actionMaximum": 1,
-    "resetMatch": "app",
-    "disableIfAppGroupMatch": "全屏广告",
-    "rules": [
-      {
-        "key": 0,
-        "matches": "@[text=\"关闭\" || text=\"×\" || desc=\"关闭\" || vid~=\"(?i).*close.*\"][clickable=true][visibleToUser=true] <n ViewGroup > [text*=\"广告\" || text*=\"推广\"][visibleToUser=true]",
-        "snapshotUrls": []
-      }
-    ]
-  },
-  {
-    "key": 2,
-    "name": "局部广告-全局",
-    "desc": "仅关闭紧邻明确广告标识的局部广告关闭按钮",
-    "order": -7,
-    "enable": true,
-    "fastQuery": true,
-    "matchTime": 10000,
-    "actionMaximum": 1,
-    "resetMatch": "app",
-    "disableIfAppGroupMatch": "局部广告",
-    "rules": [
-      {
-        "key": 0,
-        "matches": "@[text=\"关闭\" || text=\"×\" || desc=\"关闭\"][clickable=true][visibleToUser=true] <n ViewGroup > [text=\"广告\" || text=\"推广\"][visibleToUser=true]",
-        "snapshotUrls": []
-      }
-    ]
-  },
-  {
-    "key": 3,
-    "name": "更新提示-全局",
-    "desc": "关闭应用内版本更新弹窗；排除系统更新、安装及权限提示",
-    "order": -6,
-    "enable": true,
-    "fastQuery": true,
-    "matchTime": 10000,
-    "forcedTime": 10000,
-    "actionMaximum": 1,
-    "resetMatch": "app",
-    "disableIfAppGroupMatch": "更新提示",
-    "rules": [
-      {
-        "key": 0,
-        "excludeMatches": "([text*=\"全部\"][text*=\"更新\" || text*=\"忽略\"][text.length<7][visibleToUser=true]) || ([text^=\"继续\" || text^=\"仍然\" || text*=\"权限\"][text.length<6][visibleToUser=true]) || ([text*=\"来源\"][visibleToUser=true])",
-        "matches": [
-          "[text*=\"内测\" || text*=\"测试版\" || text*=\"新版\" || text*=\"更新\" || text*=\"升级\" || text*=\"体验\" || text*=\"內測\" || text*=\"測試版\" || text*=\"升級\" || text*=\"體驗\" || text*=\"Update\" || text*=\"Upgrade\" || text*=\"Experience\"][text!*=\"自动\" && text!*=\"自動\" && text!*=\"成功\" && text!*=\"失败\" && text!*=\"失敗\" && text!*=\"检查更新\" && text!*=\"检测更新\" && text!*=\"卸载\" && name!$=\"EditText\"][childCount=0][visibleToUser=true]",
-          "[text*=\"更新\" || text*=\"下载\" || text*=\"安装\" || text*=\"升级\" || text*=\"查看\" || text*=\"体验\" || text*=\"确定\" || text*=\"确认\" || text*=\"应用市场\"][text.length<6][childCount=0][visibleToUser=true]",
-          "([text*=\"不再提醒\" || text$=\"再说\" || text$=\"拒绝\" || text$=\"再想想\" || text*=\"再看看\" || text^=\"忽略\" || text^=\"暂不\" || text^=\"放弃\" || text^=\"取消\" || text$=\"不要\" || text*=\"稍后\" || text^=\"关闭\" || text$=\"Later\" || text^=\"Ignore\" || text^=\"Not now\" || text^=\"Cancel\"][text.length<6][childCount=0][visibleToUser=true]) || ([vid=\"closeIv\" || vid=\"iv_close\" || vid=\"iv_cancel\" || vid=\"close\" || vid=\"Close\" || vid=\"img_close\" || vid=\"btn_close\" || vid=\"ivCancel\" || vid=\"tvCancel\" || vid=\"cancel\" || vid=\"Cancel\" || vid=\"ivClose\" || vid=\"imgClose\" || vid=\"iv_negative\" || vid=\"update_close_icon\" || vid=\"btn_skip_update\" || vid=\"dialog_close\" || vid=\"im_dismiss\"][childCount=0][visibleToUser=true])"
-        ],
-        "snapshotUrls": [
-          "https://i.gkd.li/i/24158267",
-          "https://i.gkd.li/i/27428213",
-          "https://i.gkd.li/i/27470927",
-          "https://i.gkd.li/i/32878161",
-          "https://i.gkd.li/i/30968619"
-        ]
-      }
-    ]
-  },
-  {
-    "key": 4,
-    "name": "评价提示-全局",
-    "desc": "仅选择暂不、以后再说等关闭选项，不点击评分或好评",
-    "order": -5,
-    "enable": true,
-    "fastQuery": true,
-    "matchTime": 10000,
-    "actionMaximum": 1,
-    "resetMatch": "app",
-    "disableIfAppGroupMatch": "评价提示",
-    "rules": [
-      {
-        "key": 0,
-        "matches": "@[text=\"以后再说\" || text=\"暂不\" || text=\"稍后\" || text=\"取消\" || text=\"不用了\"][clickable=true][visibleToUser=true] <n ViewGroup > [text*=\"评分\" || text*=\"评价\" || text*=\"好评\" || text*=\"满意度\"][visibleToUser=true]",
-        "snapshotUrls": []
-      }
-    ]
-  },
-  {
-    "key": 5,
-    "name": "通知提示-全局",
-    "desc": "仅关闭通知权限引导中的暂不或稍后选项，不授予通知权限",
-    "order": -4,
-    "enable": true,
-    "fastQuery": true,
-    "matchTime": 10000,
-    "actionMaximum": 1,
-    "resetMatch": "app",
-    "disableIfAppGroupMatch": "通知提示",
-    "rules": [
-      {
-        "key": 0,
-        "matches": "@[text=\"暂不\" || text=\"以后再说\" || text=\"稍后\" || text=\"取消\" || text=\"关闭\"][clickable=true][visibleToUser=true] <n ViewGroup > [text*=\"通知\" || text*=\"消息提醒\"][visibleToUser=true]",
-        "snapshotUrls": []
-      }
-    ]
-  },
-  {
-    "key": 6,
-    "name": "青少年模式-全局",
-    "desc": "关闭应用内青少年模式提示弹窗",
-    "order": -3,
-    "enable": true,
-    "fastQuery": true,
-    "matchTime": 10000,
-    "forcedTime": 10000,
-    "actionMaximum": 1,
-    "resetMatch": "app",
-    "disableIfAppGroupMatch": "青少年模式",
-    "rules": [
-      {
-        "key": 0,
-        "matches": [
-          "[text*=\"青少年\" || text*=\"未成年\" || text*=\"儿童\"][text*=\"模式\" || text*=\"守护\"][text.length<15][childCount=0][visibleToUser=true]",
-          "[text*=\"知道了\" || text*=\"我已知晓\" || text*=\"已满\" || text*=\"不再提\" || text=\"关闭\"][text.length<8][childCount=0][visibleToUser=true]"
-        ],
-        "snapshotUrls": [
-          "https://i.gkd.li/i/23427881",
-          "https://i.gkd.li/i/27382640"
-        ]
-      }
-    ]
-  },
-  {
-    "key": 7,
-    "name": "权限提示-全局",
-    "desc": "仅关闭应用内权限引导弹窗的暂不选项；不会点击允许或拒绝系统权限",
-    "order": -2,
-    "enable": true,
-    "fastQuery": true,
-    "matchTime": 10000,
-    "actionMaximum": 1,
-    "resetMatch": "app",
-    "disableIfAppGroupMatch": "权限提示",
-    "rules": [
-      {
-        "key": 0,
-        "matches": "@[text=\"暂不\" || text=\"以后再说\" || text=\"稍后\" || text=\"取消\" || text=\"关闭\"][clickable=true][visibleToUser=true] <n ViewGroup > [text*=\"权限\" || text*=\"授权\" || text*=\"访问权限\"][visibleToUser=true]",
-        "snapshotUrls": []
-      }
-    ]
-  },
-  {
-    "key": 8,
-    "name": "定位提示-全局",
-    "desc": "仅关闭应用内定位功能引导的暂不选项；不操作系统定位权限弹窗",
-    "order": -1,
-    "enable": true,
-    "fastQuery": true,
-    "matchTime": 10000,
-    "actionMaximum": 1,
-    "resetMatch": "app",
-    "disableIfAppGroupMatch": "定位提示",
-    "rules": [
-      {
-        "key": 0,
-        "matches": "@[text=\"暂不\" || text=\"以后再说\" || text=\"稍后\" || text=\"取消\" || text=\"关闭\"][clickable=true][visibleToUser=true] <n ViewGroup > [text*=\"定位\" || text*=\"位置服务\" || text*=\"位置信息\"][visibleToUser=true]",
-        "snapshotUrls": []
-      }
-    ]
-  }
-],
+    {
+      "key": 0,
+      "name": "开屏广告-全局",
+      "desc": "识别并跳过应用开屏广告；带排除条件以减少误触",
+      "order": -10,
+      "enable": true,
+      "fastQuery": true,
+      "matchTime": 10000,
+      "actionMaximum": 2,
+      "resetMatch": "app",
+      "forcedTime": 10000,
+      "priorityTime": 10000,
+      "disableIfAppGroupMatch": "开屏广告",
+      "rules": [
+        {
+          "key": 0,
+          "excludeMatches": "([text=\"Submit\" || text=\"书签\" || text=\"NEXT\" || text=\"覆盖\" || text*=\"阅读并同意\" || text=\"跳过空白\"][visibleToUser=true]) || ([text*=\"搜索\" || text=\"历史记录\" || text$=\"在搜\"][text.length>3 && text.length<7][visibleToUser=true]) || ([text$=\"设置\" || text*=\"跳过片\"][text.length<10][visibleToUser=true]) || ([text^=\"选择\"][text*=\"偏好\" || text*=\"兴趣\" || text*=\"喜好\" || text*=\"行业\"][text.length<10][visibleToUser=true])",
+          "anyMatches": [
+            "[text*=\"跳过\"][text.length<10][width<500 && height<300][visibleToUser=true]",
+            "[childCount=0][visibleToUser=true][width<500 && height<300][(text.length<10 && (text*=\"跳过\" || text*=\"跳 过\" || text*=\"跳過\" || text~=\"(?is).*skip.*\") && text!*=\"视频\" && text!*=\"片头\" && text!*=\"片尾\") || (vid~=\"(?is).*skip.*\" && vid!~=\"(?is).*video.*\" && vid!~=\"(?is).*head.*\" && vid!~=\"(?is).*tail.*\" && !(text=\"帮助\") && !(text=\"取消\") && !(text*=\"退出\")) || id$=\"tt_splash_skip_btn\" || (desc.length<10 && (desc*=\"跳过\" || desc*=\"跳過\" || desc~=\"(?is).*skip.*\"))]"
+          ],
+          "snapshotUrls": [
+            "https://i.gkd.li/i/21617612",
+            "https://i.gkd.li/i/23557410",
+            "https://i.gkd.li/i/13421452",
+            "https://i.gkd.li/i/24097095",
+            "https://i.gkd.li/i/24766641"
+          ],
+          "excludeSnapshotUrls": [
+            "https://i.gkd.li/i/19952277",
+            "https://i.gkd.li/i/23122415",
+            "https://i.gkd.li/i/23225609",
+            "https://i.gkd.li/i/27801562",
+            "https://i.gkd.li/i/22634992",
+            "https://i.gkd.li/i/32416687",
+            "https://i.gkd.li/i/20946730",
+            "https://i.gkd.li/i/23741801",
+            "https://i.gkd.li/i/23741779",
+            "https://i.gkd.li/i/23051921",
+            "https://i.gkd.li/i/23742770",
+            "https://i.gkd.li/i/23743049",
+            "https://i.gkd.li/i/23052289"
+          ]
+        },
+        {
+          "key": 1,
+          "anyMatches": [
+            "@View[text=null][clickable=true][childCount=0][visibleToUser=true][width<200&&height<200] +(1,2) TextView[index=parent.childCount.minus(1)][childCount=0] <n FrameLayout[childCount>2][text=null][desc=null] >(n+6) [text*=\"第三方应用\" || text*=\"扭动手机\" || text*=\"点击或上滑\" || text*=\"省钱好物\" || text*=\"扭一扭\"][visibleToUser=true]",
+            "FrameLayout > FrameLayout[childCount>2][text=null][desc=null] > @View[text=null][clickable=true][childCount=0][visibleToUser=true][width<200&&height<200] +(1,2) TextView[index=parent.childCount.minus(1)][childCount=0][visibleToUser=true]"
+          ],
+          "snapshotUrls": [
+            "https://i.gkd.li/i/19685971",
+            "https://i.gkd.li/i/19701216",
+            "https://i.gkd.li/i/20262130",
+            "https://i.gkd.li/i/20768349",
+            "https://i.gkd.li/i/20883248",
+            "https://i.gkd.li/i/23549504"
+          ]
+        }
+      ]
+    },
+    {
+      "key": 3,
+      "name": "更新提示-全局",
+      "desc": "关闭应用内版本更新弹窗；排除系统更新、安装及权限提示",
+      "order": -6,
+      "enable": true,
+      "fastQuery": true,
+      "matchTime": 10000,
+      "forcedTime": 10000,
+      "actionMaximum": 1,
+      "resetMatch": "app",
+      "disableIfAppGroupMatch": "更新提示",
+      "rules": [
+        {
+          "key": 0,
+          "excludeMatches": "([text*=\"全部\"][text*=\"更新\" || text*=\"忽略\"][text.length<7][visibleToUser=true]) || ([text^=\"继续\" || text^=\"仍然\" || text*=\"权限\"][text.length<6][visibleToUser=true]) || ([text*=\"来源\"][visibleToUser=true])",
+          "matches": [
+            "[text*=\"内测\" || text*=\"测试版\" || text*=\"新版\" || text*=\"更新\" || text*=\"升级\" || text*=\"体验\" || text*=\"內測\" || text*=\"測試版\" || text*=\"升級\" || text*=\"體驗\" || text*=\"Update\" || text*=\"Upgrade\" || text*=\"Experience\"][text!*=\"自动\" && text!*=\"自動\" && text!*=\"成功\" && text!*=\"失败\" && text!*=\"失敗\" && text!*=\"检查更新\" && text!*=\"检测更新\" && text!*=\"卸载\" && name!$=\"EditText\"][childCount=0][visibleToUser=true]",
+            "[text*=\"更新\" || text*=\"下载\" || text*=\"安装\" || text*=\"升级\" || text*=\"查看\" || text*=\"体验\" || text*=\"确定\" || text*=\"确认\" || text*=\"应用市场\"][text.length<6][childCount=0][visibleToUser=true]",
+            "([text*=\"不再提醒\" || text$=\"再说\" || text$=\"拒绝\" || text$=\"再想想\" || text*=\"再看看\" || text^=\"忽略\" || text^=\"暂不\" || text^=\"放弃\" || text^=\"取消\" || text$=\"不要\" || text*=\"稍后\" || text^=\"关闭\" || text$=\"Later\" || text^=\"Ignore\" || text^=\"Not now\" || text^=\"Cancel\"][text.length<6][childCount=0][visibleToUser=true]) || ([vid=\"closeIv\" || vid=\"iv_close\" || vid=\"iv_cancel\" || vid=\"close\" || vid=\"Close\" || vid=\"img_close\" || vid=\"btn_close\" || vid=\"ivCancel\" || vid=\"tvCancel\" || vid=\"cancel\" || vid=\"Cancel\" || vid=\"ivClose\" || vid=\"imgClose\" || vid=\"iv_negative\" || vid=\"update_close_icon\" || vid=\"btn_skip_update\" || vid=\"dialog_close\" || vid=\"im_dismiss\"][childCount=0][visibleToUser=true])"
+          ],
+          "snapshotUrls": [
+            "https://i.gkd.li/i/24158267",
+            "https://i.gkd.li/i/27428213",
+            "https://i.gkd.li/i/27470927",
+            "https://i.gkd.li/i/32878161",
+            "https://i.gkd.li/i/30968619"
+          ]
+        }
+      ]
+    },
+    {
+      "key": 6,
+      "name": "青少年模式-全局",
+      "desc": "关闭应用内青少年模式提示弹窗",
+      "order": -3,
+      "enable": true,
+      "fastQuery": true,
+      "matchTime": 10000,
+      "forcedTime": 10000,
+      "actionMaximum": 1,
+      "resetMatch": "app",
+      "disableIfAppGroupMatch": "青少年模式",
+      "rules": [
+        {
+          "key": 0,
+          "matches": [
+            "[text*=\"青少年\" || text*=\"未成年\" || text*=\"儿童\"][text*=\"模式\" || text*=\"守护\"][text.length<15][childCount=0][visibleToUser=true]",
+            "[text*=\"知道了\" || text*=\"我已知晓\" || text*=\"已满\" || text*=\"不再提\" || text=\"关闭\"][text.length<8][childCount=0][visibleToUser=true]"
+          ],
+          "snapshotUrls": [
+            "https://i.gkd.li/i/23427881",
+            "https://i.gkd.li/i/27382640"
+          ]
+        }
+      ]
+    }
+  ],
   "apps": [
     {
       "id": "com.autonavi.minimap",
