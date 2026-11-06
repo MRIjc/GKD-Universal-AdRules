@@ -72,7 +72,7 @@
       "actionMaximum": 2,
       "resetMatch": "app",
       "forcedTime": 10000,
-      "actionCd": 200,
+      "actionCd": 150,
       "actionCdKey": 0,
       "actionMaximumKey": 0,
       "priorityTime": 10000,
