@@ -1,7 +1,7 @@
 {
   "id": 2026110202,
   "name": "杰的GDK订阅",
-  "version": 21,
+  "version": 22,
   "author": "MRIjc",
   "description": "同步id667订阅中与原有26个应用匹配的规则；未匹配的5个应用保留原规则，并保留原有三组全局规则。",
   "updateUrl": "https://raw.githubusercontent.com/MRIjc/GKD-Universal-AdRules/main/custom-gkd.json5",
@@ -9002,7 +9002,7 @@
           "rules": [
             {
               "key": 0,
-              "matches": "[text^=\"跳过\"][][visibleToUser=true]"
+              "matches": "[text^=\"跳过\"][visibleToUser=true]"
             }
           ],
           "order": -10,
